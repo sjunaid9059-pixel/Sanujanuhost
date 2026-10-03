@@ -1,0 +1,18 @@
+services:
+  - type: worker
+    name: prime-hosting-bot
+    runtime: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: ADMIN_ID
+        sync: false
+      - key: DATA_DIR
+        value: /data
+    disk:
+      name: prime-data
+      mountPath: /data
+      sizeGB: 1
